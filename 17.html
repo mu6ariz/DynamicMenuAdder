@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    a {
+        display: block;
+    }
+
+    nav {
+        margin-left: 70%;
+    }
+
+    input {
+        margin-top: 50%;
+    }
+</style>
+
+<body>
+    <nav id="nv">
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+        <a id="a3" href="#">About</a>
+        <a href="#">Support</a>
+    </nav>
+    <br>
+    <input id="inpt1" type="text" placeholder="Name of menu" />
+    <input id="inpt2" type="text" placeholder="Href" />
+    <button id="btn">Add it</button>
+</body>
+
+<script>
+    let input1 = document.getElementById('inpt1');
+    let input2 = document.getElementById('inpt2');
+    let a3 = document.getElementById('a3');
+    let btn = document.getElementById('btn');
+
+    btn.addEventListener('click', () => {
+        let _new = document.createElement('a');
+        let a_tag = document.getElementById('a3');
+        _new.innerText = input1.value;
+        _new.href = input2.value;
+        _new.style.position = "absolute";
+        _new.style.top = '804px';
+        _new.style.left = '57px';
+
+        let nv = document.getElementById('nv');
+
+        nv.insertBefore(_new, a3);
+
+        setInterval(() => {
+            let mt = parseInt(_new.style.top);
+            let ml = parseInt(_new.style.left);
+            let atop = parseInt(a_tag.style.marginTop);
+
+            if (mt > 42) {
+                mt -= 1;
+            }
+            if (mt <= 42 && ml < 1005) {
+                ml += 1;
+            }
+            if(ml > 950){
+                atop+=1;
+            }
+
+            if (ml == 1005) {
+                _new.style.position = 'static';
+            }
+
+            _new.style.top = `${mt}px`;
+            _new.style.left = `${ml}px`;
+            a_tag.style.marginTop = `${atop}px`
+
+        }, 5);
+
+    })
+</script>
+
+</html>
